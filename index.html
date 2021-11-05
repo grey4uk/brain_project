@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                crossorigin="" />
+        <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+        <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/normalize.css">
+        <title>BrainArchitects-розробка сайтів</title>
+</head>
+
+<body>
+        <div class="globalWrapper">
+                <p class="alertMessage">Заповніть поля позначені * у міжнародному форматі(наприклад:www@www.com та
+                        +380981234567)</p>
+                <img src="images/Scroll_down_icon.svg" class="downBtn">
+                <img src="images/Scroll_down_icon.svg" class="downBtn upBtn visually-hidden">
+                <div class="splashScreen">
+                        <div class="wrapperSplash">
+                                <div class="containerSplash">
+                                        <img src="images/Logotype.svg" class="logoLarge">
+                                        <div class="startTitleBox">
+                                                <p class="startTitle">Web | Design</p>
+                                                <p class="startTitle">IT Solutions</p>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="menuModal relative visually-hidden">
+                        <img src="images/close.svg" class="closeButton" alt="close">
+                        <div class="flex column">
+                                <a href="#" class="logoLink">
+                                        <img src="images/Logotype.svg" class="logoSmall">
+                                </a>
+                                <ul class="socialsBlock">
+                                        <li><a href="https://www.facebook.com/"><img src="images/facebook.svg"
+                                                                class="social-icon"></a></li>
+                                        <li><a href="https://www.instagram.com/"><img src="images/instagram.svg"
+                                                                class="social-icon"></a></li>
+                                        <li><a href="https://www.linkedin.com/"><img src="images/in.svg"
+                                                                class="social-icon"></a></li>
+                                </ul>
+                        </div>
+                        <ul class="modalNavigationList">
+                                <li class="navigationList-item"><a class="navigationList-item__link" href="#"
+                                                act="services">Послуги</a></li>
+                                <li class="navigationList-item"><a class="navigationList-item__link" href="#"
+                                                act="cost">Вартість</a></li>
+                                <li class="navigationList-item"><a class="navigationList-item__link" href="#"
+                                                act="start">Із чого почати</a></li>
+                                <li class="navigationList-item"><a class="navigationList-item__link" href="#"
+                                                act="slides">Портфоліо</a></li>
+                                <li class="navigationList-item"><a class="navigationList-item__link" href="#"
+                                                act="contacts">Контакти</a></li>
+                        </ul>
+                        <form autocomplete="off" action="./mail.php" method="POST" id="modalForm">
+                                <h3>
+                                        Давайте обговоримо Ваші ідеї
+                                </h3>
+                                <div class="formInputBox">
+                                        <input class="formInput icon1" id="navName1" type="text" name="email"
+                                                placeholder="Ваш емейл*" required />
+                                        <input class="formInput icon2" id="navName2" type="text" name="tel"
+                                                placeholder="Номер телефону*" required />
+                                </div>
+                                <div class="showMore" id="showMoreNav">
+                                        <p class="showMoreTxt">Додати деталі
+                                                запиту</p>
+                                        <div class="relative">
+                                                <img src="images/arrowUp.svg" id="navArrowDown"
+                                                        class="arrowShow visually-hidden">
+                                                <img src="images/arrowDown.svg" id="navArrowUp" class="arrowShow">
+                                        </div>
+                                </div>
+                                <div class="navSubmitButtonBoxTop">
+                                        <img src="images/invisible-recaptcha.svg" class="g-recaptcha"
+                                                data-sitekey="reCAPTCHA_site_key" data-callback="onSubmit"
+                                                data-action="submit" />
+                                        <div class="buttonSubmitBlock">
+                                                <button class="buttonSubmit" id="navBtnSbmtTop">Надіслати</button>
+                                        </div>
+                                </div>
+                                <div class="formInputBox transitionShowMore" id="navShowMore">
+                                        <div class="showInputBox">
+                                                <input class="formInput icon3" id="navName3" type="text" name="name"
+                                                        placeholder="Ваше ім'я" />
+                                                <input class="formInput icon4" id="navName4" type="text" name="service"
+                                                        placeholder="Необхідна послуга" />
+                                                <input class="formInput icon5" id="navName5" type="text" name="date"
+                                                        placeholder="Терміни" />
+                                        </div>
+                                        <div class="showInputBox">
+                                                <input class="formInput icon6" id="navName6" type="text" name="cost"
+                                                        placeholder="Бюджет" />
+                                                <textarea class="coments" name="textarea" rows="5" cols="20"
+                                                        placeholder="Коментар..." id="navComments"></textarea>
+                                        </div>
+                                </div>
+                                <div class="navSubmitButtonBox visually-hidden">
+                                        <img src="images/invisible-recaptcha.svg" class="g-recaptcha"
+                                                data-sitekey="reCAPTCHA_site_key" data-callback="onSubmit"
+                                                data-action="submit" />
+                                        <div class="buttonSubmitBlock">
+                                                <button class="buttonSubmit" id="navBtnSbmtDown">Надіслати</button>
+                                        </div>
+                                </div>
+
+                        </form>
+                </div>
+
+                <div class="wrapper">
+                        <div class="main visually-hidden">
+                                <div class="btnBlock btnBlockFixed opacityClass" id="btnBlockFixed">
+                                        <img src="images/Button_to-contacts.svg" class="mailBtn">
+
+                                        <img src="images/menuBtn.svg" class="menuBtn" id="menuBtnFix">
+                                </div>
+                                <div class="fixedDesktopMenu opacityClass">
+
+                                        <img src="images/menuBtn.svg" class="menuBtn menuBtnFixed" id="menuBtnFixed">
+
+                                        <ul class="navigationList navigationListFixed" id="fixedBarList">
+                                                <li class="button navigationList-item" id="openRequestFixed">Подати
+                                                        запит</li>
+                                                <li class="navigationList-item"><a class="navigationList-item__link"
+                                                                href="#services">Послуги</a></li>
+                                                <li class="navigationList-item"><a class="navigationList-item__link"
+                                                                href="#cost">Вартість</a></li>
+                                                <li class="navigationList-item"><a class="navigationList-item__link"
+                                                                href="#start">Із чого почати</a></li>
+                                                <li class="navigationList-item"><a class="navigationList-item__link"
+                                                                href="#slides">Портфоліо</a></li>
+                                                <li class="navigationList-item"><a class="navigationList-item__link"
+                                                                href="#contacts">Контакти</a></li>
+                                        </ul>
+                                </div>
+
+                                <section class="section wrapperSplash firstScreen opacityClass" id="firstSection">
+                                        <nav class="navigation" id="navigation">
+                                                <div class="flex">
+                                                        <a href="#" class="logoLink">
+                                                                <img src="images/Logotype.svg" class="logoSmall">
+                                                        </a>
+                                                        <ul class="socialsBox">
+                                                                <li><a href="https://www.facebook.com/"><img
+                                                                                        src="images/facebook.svg"
+                                                                                        class="social-icon"></a></li>
+                                                                <li><a href="https://www.instagram.com/"><img
+                                                                                        src="images/instagram.svg"
+                                                                                        class="social-icon"></a></li>
+                                                                <li><a href="https://www.linkedin.com/"><img
+                                                                                        src="images/in.svg"
+                                                                                        class="social-icon"></a></li>
+                                                        </ul>
+                                                </div>
+                                                <div class="btnBlock">
+                                                        <img src="images/menuBtn.svg" class="menuBtn" id="menuBtn">
+                                                </div>
+                                                <ul class="navigationList">
+                                                        <li class="button navigationList-item" id="openRequest">Подати
+                                                                запит</li>
+                                                        <li class="navigationList-item"><a
+                                                                        class="navigationList-item__link"
+                                                                        href="#services">Послуги</a></li>
+                                                        <li class="navigationList-item"><a
+                                                                        class="navigationList-item__link"
+                                                                        href="#cost">Вартість</a></li>
+                                                        <li class="navigationList-item"><a
+                                                                        class="navigationList-item__link"
+                                                                        href="#start">Із чого почати</a></li>
+                                                        <li class="navigationList-item"><a
+                                                                        class="navigationList-item__link"
+                                                                        href="#slides">Портфоліо</a></li>
+                                                        <li class="navigationList-item"><a
+                                                                        class="navigationList-item__link"
+                                                                        href="#contacts">Контакти</a></li>
+                                                </ul>
+                                        </nav>
+                                        <div class="overlay">
+                                                <div class="container relative">
+                                                        <div class="startText">
+                                                                <p>Розробляємо сайти, які продають поки ви спите</p>
+                                                                <div class="button" id="meetRequest">Провести
+                                                                        онлайн-зустріч</div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="requestModal">
+                                                <form autocomplete="off" action="./mail.php" method="POST"
+                                                        id="modalRequestForm">
+                                                        <h3 class="modalTitle" id="requestTitle">
+                                                                Подати запит
+                                                        </h3>
+                                                        <div class="formInputBox">
+                                                                <input class="formInput icon1" id="modalName1"
+                                                                        type="text" name="email"
+                                                                        placeholder="Ваш емейл*" required />
+                                                                <input class="formInput icon3 visually-hidden"
+                                                                        id="modalName11" type="text" name="name"
+                                                                        placeholder="Ваше ім'я*" required />
+                                                                <input class="formInput icon2" id="modalName2"
+                                                                        type="text" name="tel"
+                                                                        placeholder="Номер телефону*" required />
+                                                        </div>
+                                                        <div class="showMoreModal" id="showMoreModal">
+                                                                <p class="showMoreTxt">Додати деталі
+                                                                        запиту</p>
+                                                                <div class="relative">
+                                                                        <img src="images/arrowUp.svg"
+                                                                                id="modalArrowDown"
+                                                                                class="arrowShow visually-hidden">
+                                                                        <img src="images/arrowDown.svg"
+                                                                                id="modalArrowUp" class="arrowShow">
+                                                                </div>
+                                                        </div>
+                                                        <div class="modalSubmitButtonBoxTop">
+                                                                <img src="images/invisible-recaptcha.svg"
+                                                                        class="g-recaptcha"
+                                                                        data-sitekey="reCAPTCHA_site_key"
+                                                                        data-callback="onSubmit" data-action="submit" />
+                                                                <div class="buttonSubmitBlock">
+                                                                        <button class="buttonSubmit"
+                                                                                id="submitRequestModalTop">Надіслати</button>
+                                                                </div>
+                                                                <p class="goBack" id="goBackTop">Назад</p>
+                                                        </div>
+                                                        <div class="formInputBox transitionShowMore" id="modalShowMore">
+                                                                <div class="showInputBox">
+                                                                        <input class="formInput icon3" id="modalName3"
+                                                                                type="text" name="name"
+                                                                                placeholder="Ваше ім'я" />
+                                                                        <input class="formInput icon3 visually-hidden"
+                                                                                id="modalName33" type="email"
+                                                                                name="email" placeholder="Ваш емейл" />
+                                                                        <input class="formInput icon4" id="modalName4"
+                                                                                type="text" name="service"
+                                                                                placeholder="Необхідна послуга" />
+                                                                        <input class="formInput icon5" id="modalName5"
+                                                                                type="text" name="date"
+                                                                                placeholder="Терміни" />
+                                                                </div>
+                                                                <div class="showInputBox">
+                                                                        <input class="formInput icon6" id="modalName6"
+                                                                                type="text" name="cost"
+                                                                                placeholder="Бюджет" />
+                                                                        <textarea class="coments" name="textarea"
+                                                                                rows="5" cols="30"
+                                                                                placeholder="Коментар..."
+                                                                                id="modalComments"></textarea>
+                                                                </div>
+                                                        </div>
+                                                        <div class="modalSubmitButtonBox visually-hidden">
+                                                                <img src="images/invisible-recaptcha.svg"
+                                                                        class="g-recaptcha"
+                                                                        data-sitekey="reCAPTCHA_site_key"
+                                                                        data-callback="onSubmit" data-action="submit" />
+                                                                <div class="buttonSubmitBlock">
+                                                                        <button class="buttonSubmit"
+                                                                                id="submitRequestModalDown">Надіслати</button>
+                                                                </div>
+                                                                <p class="goBack" id="goBack">Назад</p>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                        <div id="firstSectionAnchor"></div>
+                                </section>
+                                <section class="section services opacityClass" id="secondSection">
+                                        <video autoplay loop muted playsinline id="myVideo"
+                                                poster="images/videoBg.webp">
+                                                <source src="images/video.mp4" type="video/webm" />
+                                        </video>
+                                        <div class="container column servicesContent">
+                                                <h2 class="sectionTitle" id="services">Наші послуги</h2>
+                                                <div class="servicesCard">
+                                                        <div class="card">
+                                                                <img src="images/sites.svg" class="cardSvg">
+                                                                <div class="cardList">
+                                                                        <h3>Створення сайтів</h3>
+                                                                        <ul>
+                                                                                <li> Лендінг </li>
+                                                                                <li> Сайт візитка </li>
+                                                                                <li> Корпоративний сайт </li>
+                                                                                <li> Інтернет магазин </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="servicesCard">
+                                                        <div class="card">
+                                                                <img src="images/design.svg" class="cardSvg">
+                                                                <div class="cardList">
+                                                                        <h3>Дизайн та брендінг</h3>
+                                                                        <ul>
+                                                                                <li> Неймінг </li>
+                                                                                <li> Розробка логотипу </li>
+                                                                                <li> Бренд бук </li>
+                                                                                <li> Корпоративний стиль </li>
+                                                                                <li> Дизайн UI/UX </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="servicesCard">
+                                                        <div class="card">
+                                                                <img src="images/mobile.svg" class="cardSvg">
+                                                                <div class="cardList">
+                                                                        <h3>Унікальні веб та мобайл рішення</h3>
+                                                                        <ul>
+                                                                                <li> Розробка ІТ рішень для державних
+                                                                                        підприємств </li>
+                                                                                <li> Інтеграція з пристроями </li>
+                                                                                <li> Рішення для стартапів </li>
+                                                                                <li> CRM/ERP системи </li>
+                                                                                <li> Мобайл застосунки </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                        <div id="secondSectionAnchor"></div>
+                                </section>
+                                <section class="section cost relative opacityClass" id="thirdSection">
+                                        <div class="container costTitle">
+                                                <h2 class="sectionTitle" id="cost">Вартість</h2>
+                                        </div>
+                                        <!-- CAROUSEL WITH FADING EFFECT -->
+                                        <div class="carousel">
+                                                <div class="carouselBlock " id="prev">
+                                                        <div class="polygonBlock origin" id="leftDesign">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/design.svg"
+                                                                                class="polygonImgSvg leftBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt leftBoxTxt">
+                                                                                Дизайн
+                                                                                та
+                                                                                брендінг
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="leftSites">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/sites.svg"
+                                                                                class="polygonImgSvg leftBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt leftBoxTxt">
+                                                                                Створення
+                                                                                сайтів
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="leftMobile">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/mobile.svg"
+                                                                                class="polygonImgSvg leftBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt leftBoxTxt">
+                                                                                Унікальні
+                                                                                веб та
+                                                                                мобайл
+                                                                                рішення
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="arrowBlock">
+                                                                <img src="images/leftArrow.svg" class="arrow">
+
+                                                        </div>
+                                                </div>
+                                                <div class="carouselBlock">
+                                                        <div class="polygonBlock origin" id="middleSites">
+                                                                <img src="images/polygon.svg" class="polygon">
+
+                                                                <div class="polygonImg">
+                                                                        <img src="images/sites.svg"
+                                                                                class="polygonImgSvgBig middleBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxtBig middleBoxTxt">
+                                                                                Створення
+                                                                                сайтів
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="middleDesign">
+                                                                <img src="images/polygon.svg" class="polygon">
+
+                                                                <div class="polygonImg">
+                                                                        <img src="images/design.svg"
+                                                                                class="polygonImgSvgBig middleBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxtBig middleBoxTxt">
+                                                                                Дизайн
+                                                                                та
+                                                                                брендінг
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="middleMobile">
+                                                                <img src="images/polygon.svg" class="polygon">
+
+                                                                <div class="polygonImg">
+                                                                        <img src="images/mobile.svg"
+                                                                                class="polygonImgSvgBig middleBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxtBig middleBoxTxt">
+                                                                                Унікальні
+                                                                                веб та
+                                                                                мобайл
+                                                                                рішення
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+
+                                                </div>
+                                                <div class="carouselBlock" id="next">
+                                                        <div class="polygonBlock origin" id="rightMobile">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/mobile.svg"
+                                                                                class="polygonImgSvg rightBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt rightBoxTxt">
+                                                                                Унікальні
+                                                                                веб та
+                                                                                мобайл
+                                                                                рішення
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="rightDesign">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/design.svg"
+                                                                                class="polygonImgSvg rightBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt rightBoxTxt">
+                                                                                Дизайн
+                                                                                та
+                                                                                брендінг
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="polygonBlock unvisible" id="rightSites">
+                                                                <img src="images/polygon.svg" class="polygonSmall">
+                                                                <div class="polygonImg">
+                                                                        <img src="images/sites.svg"
+                                                                                class="polygonImgSvg rightBoxImg">
+                                                                </div>
+                                                                <div class="polygonTxtBlock">
+                                                                        <p class="polygonTxt rightBoxTxt">
+                                                                                Створення
+                                                                                сайтів
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        <div class="arrowBlock">
+                                                                <img src="images/rightArrow.svg" class="arrow">
+                                                        </div>
+
+                                                </div>
+                                        </div>
+
+                                        <div class="container column">
+                                                <div class="select">
+                                                        <select name="select"
+                                                                class="selectOptions unvisible visually-hidden"
+                                                                id="design">
+                                                                <option value="design1" selected>Неймінг</option>
+                                                                <option value="design2">Розробка логотипу</option>
+                                                                <option value="design3">Бренд бук
+                                                                </option>
+                                                                <option value="design4">Корпоративний стиль</option>
+                                                                <option value="design5"> Дизайн UI/UX </option>
+                                                        </select>
+                                                        <select name="select" class="selectOptions" id="site">
+                                                                <option value="site1" selected>Лендінг</option>
+                                                                <option value="site2">Сайт візитка</option>
+                                                                <option value="site3">Корпоративний сайт</option>
+                                                                <option value="site4">Інтернет магазин</option>
+                                                        </select>
+                                                        <select name="select"
+                                                                class="selectOptions unvisible visually-hidden"
+                                                                id="mobile">
+                                                                <option value="mobile1" selected>Розробка ІТ рішень для
+                                                                        державних
+                                                                        підприємств</option>
+                                                                <option value="mobile2">Інтеграція з пристроями</option>
+                                                                <option value="mobile3">Рішення для стартапів
+                                                                </option>
+                                                                <option value="mobile4">CRM/ERP системи</option>
+                                                                <option value="mobile5">Мобайл застосунки</option>
+                                                        </select>
+                                                </div>
+                                                <div class="relative">
+                                                        <div class="priceOverlayBlock">
+                                                                <p class="button costButton" id="priceOverlay">
+                                                                        Дивитись ціну
+                                                                </p>
+                                                                <!-- <div class="priceOverlay" id="priceOverlay">
+                                                                        <div class="openPrice">
+                                                                                <img src="images/ph_eye-thin.svg"
+                                                                                        class="eye">
+                                                                                <p class="priceTxt">Дивитись ціну</p>
+                                                                        </div>
+                                                                </div> -->
+                                                        </div>
+                                                        <div class="formWrapper">
+                                                                <form autocomplete="off"
+                                                                        class="priceInfoBox visually-hidden"
+                                                                        action="./mail.php" method="POST"
+                                                                        id="priceForm">
+                                                                        <p class="price">
+                                                                                <span>Від</span>
+                                                                                <span id="price">300</span>
+                                                                                <span> у.о.</span>
+                                                                        </p>
+
+                                                                        <h2 class="letsTalk">Обговорімо?</h2>
+                                                                        <input class="formInput icon2" id="priceInput"
+                                                                                type="text" name="tel"
+                                                                                placeholder="Номер телефону*"
+                                                                                required />
+                                                                        <div class="buttonSubmitBlock">
+                                                                                <button class="buttonSubmit"
+                                                                                        id="priceSubmit">Надіслати</button>
+                                                                        </div>
+                                                                </form>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div id="thirdSectionAnchor"></div>
+                                </section>
+                                <section class="section start relative opacityClass" id="forthSection">
+                                        <div class="startFrom"></div>
+                                        <div class="">
+                                                <div class="container startTitle">
+                                                        <h2 class="sectionTitle" id="start">З чого почати</h2>
+                                                </div>
+                                                <div class="numberBox">
+                                                        <div class="number">
+                                                                <img src="images/1.svg" class="numberImg">
+                                                                <p class="numberTxt">Написати нам</p>
+                                                        </div>
+                                                        <div class="number">
+                                                                <img src="images/2.svg" class="numberImg">
+                                                                <p class="numberTxt">Обговорити деталі проекту</p>
+                                                        </div>
+                                                        <div class="number">
+                                                                <img src="images/3.svg" class="numberImg">
+                                                                <p class="numberTxt">
+                                                                        Визначити критерії його ефективності
+                                                                </p>
+                                                        </div>
+                                                        <div class="number">
+                                                                <img src="images/4.svg" class="numberImg">
+                                                                <p class="numberTxt">Узгодити бюджет та терміни</p>
+                                                        </div>
+                                                </div>
+                                                <div class="form">
+                                                        <div class="container">
+                                                                <form autocomplete="off" action="./mail.php"
+                                                                        method="POST" id="form">
+
+                                                                        <h3>
+                                                                                Давайте обговоримо Ваші ідеї
+                                                                        </h3>
+                                                                        <div class="formInputBox">
+                                                                                <input class="formInput icon1"
+                                                                                        id="POST-name1" type="text"
+                                                                                        name="email"
+                                                                                        placeholder="Ваш емейл*"
+                                                                                        required />
+                                                                                <input class="formInput icon2"
+                                                                                        id="POST-name2" type="text"
+                                                                                        name="tel"
+                                                                                        placeholder="Номер телефону*"
+                                                                                        required />
+                                                                        </div>
+                                                                        <div class="showMore" id="showMoreToggle">
+                                                                                <p class="showMoreTxt">Додати деталі
+                                                                                        запиту</p>
+                                                                                <div class="relative">
+                                                                                        <img src="images/arrowUp.svg"
+                                                                                                id="arrowDown"
+                                                                                                class="arrowShow visually-hidden">
+                                                                                        <img src="images/arrowDown.svg"
+                                                                                                id="arrowUp"
+                                                                                                class="arrowShow">
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="submitButtonBoxTop">
+                                                                                <img src="images/invisible-recaptcha.svg"
+                                                                                        class="g-recaptcha"
+                                                                                        data-sitekey="reCAPTCHA_site_key"
+                                                                                        data-callback="onSubmit"
+                                                                                        data-action="submit" />
+                                                                                <div class="buttonSubmitBlock">
+                                                                                        <button class="buttonSubmit"
+                                                                                                id="startSubmitBtnTop">Надіслати</button>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="formInputBox transitionShowMore"
+                                                                                id="showMore">
+                                                                                <div class="showInputBox">
+                                                                                        <input class="formInput icon3"
+                                                                                                id="POST-name3"
+                                                                                                type="text" name="name"
+                                                                                                placeholder="Ваше ім'я" />
+                                                                                        <input class="formInput icon4"
+                                                                                                id="POST-name4"
+                                                                                                type="text"
+                                                                                                name="service"
+                                                                                                placeholder="Необхідна послуга" />
+                                                                                        <input class="formInput icon5"
+                                                                                                id="POST-name5"
+                                                                                                type="text" name="date"
+                                                                                                placeholder="Терміни" />
+                                                                                </div>
+                                                                                <div class="showInputBox">
+                                                                                        <input class="formInput icon6"
+                                                                                                id="POST-name6"
+                                                                                                type="text" name="cost"
+                                                                                                placeholder="Бюджет" />
+                                                                                        <textarea class="coments"
+                                                                                                name="textarea" rows="5"
+                                                                                                cols="30"
+                                                                                                placeholder="Коментар..."
+                                                                                                id="comments"></textarea>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="submitButtonBox visually-hidden">
+                                                                                <img src="images/invisible-recaptcha.svg"
+                                                                                        class="g-recaptcha"
+                                                                                        data-sitekey="reCAPTCHA_site_key"
+                                                                                        data-callback="onSubmit"
+                                                                                        data-action="submit" />
+                                                                                <div class="buttonSubmitBlock">
+                                                                                        <button class="buttonSubmit"
+                                                                                                id="startSubmitBtnDown">Надіслати</button>
+                                                                                </div>
+                                                                        </div>
+
+                                                                </form>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div id="forthSectionAnchor"></div>
+                                </section>
+                                <section class="section opacityClass" id="fifthSection">
+                                        <div class="lightBox" id="lightBox">
+                                                <img src="images/close.svg" class="closeLightBox" id="closeLightBox"
+                                                        alt="close">
+                                                <img src="./portfolio/min/sub.png" alt="Image" class="lightBoxImg"
+                                                        id="lightBoxImg">
+                                        </div>
+                                        <div class="container relative column">
+                                                <h2 class="sectionTitle" id="slides">Кейси</h2>
+
+                                                <div class="swiper-container swiper1">
+                                                        <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub1_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub1">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub2_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub2">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub3_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub3">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub4_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub4">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub5_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub5">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub6_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub6">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub7_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub7">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub8_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub8">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub9_min.webp" alt="slide"
+                                                                                class="slide-image" id="sub9">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/sub10_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="sub10">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/race1_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="race1">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/race2_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="race2">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/site1_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="site1">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/site2_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="site2">
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                        <img src="./portfolio/site3_min.webp"
+                                                                                alt="slide" class="slide-image"
+                                                                                id="site3">
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="swiper-button-next sliderButton"></div>
+                                                        <div class="swiper-button-prev sliderButton"></div>
+                                                </div>
+                                        </div>
+                                        <div class="container">
+                                                <h3 class="swiper2Title">...і кейси із посиланням ( <span
+                                                                class="smallh3">для переходу на сайт
+                                                                натисніть на
+                                                                слайд</span> )
+                                                        <img src="images/arrowDown.svg" alt="arrowDown"></h3>
+                                        </div>
+                                        <div class="swiperContainer relative column">
+                                                <div class="swiper-container swiper2">
+                                                        <div class="swiper-wrapper">
+                                                                <div class="swiper-slide"><a
+                                                                                href="https://x-team.com.ua"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site9.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                                <div class="swiper-slide"><a href="https://besafe.co.ua"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site8.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                                <div class="swiper-slide"><a href="http://guseva.agency"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site7.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                                <div class="swiper-slide"><a
+                                                                                href="https://www.esilkroad.com.ua/?page_id=143&lang=ru"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site6.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                                <div class="swiper-slide"><a
+                                                                                href="https://fixtrain.com.ua"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site5.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                                <div class="swiper-slide"><a
+                                                                                href="https://www.mrt-m24.com"
+                                                                                class="slideLink">
+                                                                                <img src="./portfolio/site4.webp"
+                                                                                        alt="slide" class="slide-image">
+                                                                        </a></div>
+                                                        </div>
+
+                                                        <div class="swiper-button-next sliderButton"></div>
+                                                        <div class="swiper-button-prev sliderButton"></div>
+                                                </div>
+                                        </div>
+
+
+
+                                        <div id="fifththSectionAnchor"></div>
+                                </section>
+                                <section class="contactsSection relative opacityClass" id="sixthSection">
+                                        <div class="container">
+                                                <div class="contacts">
+                                                        <h2 class="sectionTitle" id="contacts">
+                                                                Ми знаємо як Вам допомогти
+                                                        </h2>
+                                                        <div class="contactsBox">
+                                                                <div class="contactsItems">
+                                                                        <h3 class="contactsTitle">Наші контакти</h3>
+                                                                        <div class="contactItem">
+                                                                                <img src="images/phone.svg"
+                                                                                        class="contactsIco">
+                                                                                <p class="contactTxt">(+38-0) 67 356
+                                                                                        8080</p>
+                                                                        </div>
+                                                                        <div class="contactItem">
+                                                                                <img src="images/mail.svg"
+                                                                                        class="contactsIco">
+                                                                                <p class="contactTxt">
+                                                                                        brn.architect@gmail.com
+                                                                                </p>
+                                                                        </div>
+                                                                        <div class="contactItem">
+                                                                                <img src="images/adress.svg"
+                                                                                        class="contactsIco">
+                                                                                <p class="contactTxt">
+                                                                                        Вишгород, вул. Шолуденка, 18А
+                                                                                </p>
+                                                                        </div>
+                                                                </div>
+                                                                <div id="map" class="map"></div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div id="sixthSectionAnchor"></div>
+                                </section>
+                                <section class="about opacityClass" id="seventhSection">
+                                        <div class="container">
+                                                <div class="aboutBox flex column">
+                                                        <h3 class="aboutTitle" id="about">Про нас</h3>
+                                                        <p class="aboutUs">
+                                                                Компанія BrainArchitects складається з групи пристрасних
+                                                                фахівців з IT технологій, які забезпечують відмінні
+                                                                цифрові рішення, що допомагають нашим клієнтам
+                                                                ефектівніше вести бізнес.
+
+                                                                Ми любимо Виклики.
+
+                                                                Компанію BrainArchitects було засновано в 2019 році й у
+                                                                нашій команді працюють лише співробітники, які мають
+                                                                більше 4-х років досвіду роботи, тому Ви можете бути
+                                                                впевнені, що Ваш проект буде виконаний вчасно та з
+                                                                найкращою якістю.
+
+                                                                До того ж, Ви отримуєте не лише програмістів, але й
+                                                                експертизу з Вашого бізнесу. Протягом останніх років у
+                                                                нас було багато проектів з різних напрямків, тому ми
+                                                                завжди раді допомогти Вам з'ясувати, як прийняти
+                                                                правильне
+                                                                решение у IT розробці, виключно за Вашими вимогами.
+
+                                                                Найважлівіші члени нашої команди - наші клієнти. З
+                                                                самого початку ми Обговорюємо всі деталі з вами та з
+                                                                глибоким аналізом Вашої роботи. Ми гарантуємо, що всі
+                                                                вимоги нашого клієнта виконуються, і їх цілі
+                                                                досягаються.
+
+                                                                BrainArchitects - Ваш надійний партнер у ІТ.
+
+                                                                Що ми можемо зробити, щоб краще працював Ваш бізнес,
+                                                                привертав більше уваги, конвертував та продавав більше?
+
+                                                                Давайте дізнаємось!
+                                                        </p>
+                                                </div>
+                                        </div>
+                                        <div id="seventhSectionAnchor"></div>
+                                </section>
+                        </div>
+                </div>
+
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                crossorigin=""></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="./js/swiper-bundle.min.js"></script>
+        <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+        <script src="./js/script.js"></script>
+        <script>
+                // position we will use later
+                const lat = 50.590491302498336;
+                const lon = 30.487241842225608;
+
+                // initialize map
+                const map = L.map('map', {
+                        center: [50.590491302498336, 30.487241842225608],
+                        zoom: 13
+                });
+                // set map tiles source
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                        maxZoom: 18,
+                }).addTo(map);
+                // add marker to the map
+                const marker = L.marker([lat, lon]).addTo(map);
+                // add popup to the marker
+                marker.bindPopup("<b>BrainArchitects</b><br />Sholudenka st., 18a<br />Vyshgorod").openPopup();
+        </script>
+</body>
+
+</html>
